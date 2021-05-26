@@ -1,24 +1,10 @@
-1. 训练DE-CNN并生成数据
-	在jupyter中
+1. 下载bert放在BERT_BASE_DIR文件夹下
 
-2. 评测DECNN
-	在jupyter中
+2. 使用jupyter notebook打开DE-CNN_train.ipynb.你可以设置各种参数然后训练DE-CNN。
 
-3. 训练boundary模块
-训练数据需要修改
-python3 run_aspect_boundary_modifying_train.py \
-  --vocab_file=BERT_BASE_DIR/vocab.txt \
-  --bert_config_file=BERT_BASE_DIR/bert_config.json \
-  --init_checkpoint=BERT_BASE_DIR/bert_model.ckpt \
-  --do_train=True \
-  --train_batch_size=10 \
-  --learning_rate=3e-5 \
-  --num_train_epochs=10 \
-  --max_seq_length=85 \
-  --output_dir=boundary_output_data/ \
-  --domain=laptop
+3. 打开DE-CNN_evaluate.ipynb.评测模型。
 
-4. 训练num模块
+4. 训练Aspect Number Determining模块
 python3 run_aspect_number_determining_train.py \
   --task_name=and \
   --do_train=true \
@@ -31,8 +17,19 @@ python3 run_aspect_number_determining_train.py \
   --num_train_epochs=10 \
   --learning_rate=3e-5 \
   --output_dir=number_output_data/ \
+  #you can set this parameter to [laptop], [reataurant], [reataurant14], [reataurant15]
   --domain=laptop
 
-5.在jupyter中评测DE-CNN并生成数据
-
-6.在jupyter中评测DE-CNN加上num或boundary模块并关闭生成数据
+5. 训练Aspect Boundary Modifying模块
+python3 run_aspect_boundary_modifying_train.py \
+  --vocab_file=BERT_BASE_DIR/vocab.txt \
+  --bert_config_file=BERT_BASE_DIR/bert_config.json \
+  --init_checkpoint=BERT_BASE_DIR/bert_model.ckpt \
+  --do_train=True \
+  --train_batch_size=10 \
+  --learning_rate=3e-5 \
+  --num_train_epochs=10 \
+  --max_seq_length=85 \
+  --output_dir=boundary_output_data/ \
+  #you can set this parameter to [laptop], [reataurant], [reataurant14], [reataurant15]
+  --domain=laptop
