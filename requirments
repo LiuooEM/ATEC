@@ -1,0 +1,13 @@
+1. pytorch >= 1.7
+conda install pytorch cudatoolkit=10.1 -c pytorch
+
+2. tensorflow >= 1.14.0
+pip install tensorflow-gpu==1.14.0
+
+3. ipykernel
+pip install ipkernel
+python -m ipykernel install --user --name [your env name] --display-name [your env name]
+
+4. sklearn
+
+5. keras==2.2.5
