@@ -6,6 +6,8 @@ Code for our XXX paper: ''
 
 Install the packages listed in Requirements.
 
+We train our model on i9-10900K and 2080Ti (11G RAM). It costs about 50 minutes to train DE-CNN and post-process modules for each domain.
+
 ### Usage
 
 1. Download BERT-Base (https://storage.googleapis.com/bert_models/2020_02_20/uncased_L-12_H-768_A-12.zip), save it in BERT_BASE_DIR.
@@ -21,18 +23,18 @@ Install the packages listed in Requirements.
 5. Train Aspect Number Determining module:
 
    ```
-   python3 run_aspect_number_determining_train.py
-   --task_name=and
-   --do_train=true
-   --data_dir=train_data
-   --vocab_file=BERT_BASE_DIR/vocab.txt
-   --bert_config_file=BERT_BASE_DIR/bert_config.json
-   --init_checkpoint=BERT_BASE_DIR/bert_model.ckpt
-   --max_seq_length=85
-   --train_batch_size=10
-   --num_train_epochs=10
-   --learning_rate=3e-5
-   --output_dir=number_output_data
+   python3 run_aspect_number_determining_train.py \
+   --task_name=and \
+   --do_train=true \
+   --data_dir=train_data \
+   --vocab_file=BERT_BASE_DIR/vocab.txt \
+   --bert_config_file=BERT_BASE_DIR/bert_config.json \
+   --init_checkpoint=BERT_BASE_DIR/bert_model.ckpt \
+   --max_seq_length=85 \
+   --train_batch_size=10 \
+   --num_train_epochs=10 \
+   --learning_rate=3e-5 \
+   --output_dir=number_output_data/ \
    --domain=laptop
    ```
 
@@ -41,16 +43,16 @@ Install the packages listed in Requirements.
 6. Train Aspect Boundary Modifying module:
 
    ```
-   python3 run_aspect_boundary_modifying_train.py
-   --vocab_file=BERT_BASE_DIR/vocab.txt
-   --bert_config_file=BERT_BASE_DIR/bert_config.json
-   --init_checkpoint=BERT_BASE_DIR/bert_model.ckpt
-   --do_train=True
-   --train_batch_size=10
-   --learning_rate=3e-5
-   --num_train_epochs=10
-   --max_seq_length=85
-   --output_dir=boundary_output_data
+   python3 run_aspect_boundary_modifying_train.py \
+   --vocab_file=BERT_BASE_DIR/vocab.txt \
+   --bert_config_file=BERT_BASE_DIR/bert_config.json \
+   --init_checkpoint=BERT_BASE_DIR/bert_model.ckpt \
+   --do_train=True \
+   --train_batch_size=10 \
+   --learning_rate=3e-5 \
+   --num_train_epochs=10 \
+   --max_seq_length=85 \
+   --output_dir=boundary_output_data/ \
    --domain=laptop
    ```
 
