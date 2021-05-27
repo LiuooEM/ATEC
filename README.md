@@ -64,11 +64,7 @@ Install the packages listed in Requirements.
 
 ### Adaptation experiments
 
-We examine the adaptation performance of the two post-process modules by replacing DE-CNN with new sequence taggers.
-
-We have prepared two sequence taggers: BiLSTM-CNN and Seq2Seq4ATE.
-
-The post-process modules have been trained, we can use them without retraining.
+We examine the adaptation performance of the two post-process modules by replacing DE-CNN with new sequence taggers. We have prepared two sequence taggers: BiLSTM-CNN and Seq2Seq4ATE. The post-process modules have been trained, we can use them without retraining.
 
 We give the usage of BiLSTM-CNN.
 
