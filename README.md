@@ -2,6 +2,10 @@
 
 Code for our XXX paper: ''
 
+### Requirements
+
+Install the packages listed in Requirements.
+
 ### Usage
 
 1. Download BERT-Base (https://storage.googleapis.com/bert_models/2020_02_20/uncased_L-12_H-768_A-12.zip), save it in BERT_BASE_DIR.
