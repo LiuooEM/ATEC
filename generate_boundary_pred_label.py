@@ -2,9 +2,6 @@ import json
 import codecs
 
 def return_predicted_boundary_test_label(domain, run_epoch):
-    """
-    读取原始test的顺序索引，存为origin_index，是一个二维数组,[flag, index]
-    """
     file_name = 'output_data/' + domain + '/origin_index_' + str(run_epoch) + '.utf8'
     origin_index = []
     with open(file_name, 'r') as f:
@@ -12,10 +9,6 @@ def return_predicted_boundary_test_label(domain, run_epoch):
             temp = i.strip().split(" ")
             origin_index.append([temp[0], temp[1]])
     
-    """
-    读取存在方面句子的预测结果,先全置0，再修改
-    """
-    #读取索引
     file_name_index = 'output_data/' + domain + '/que2con_' + str(run_epoch) + '.json'
     f1 = codecs.open(file_name_index,"r",encoding="utf-8")
     chosen_index = json.load(f1)
@@ -25,7 +18,6 @@ def return_predicted_boundary_test_label(domain, run_epoch):
         ans_id.append(key)
     for i in range(len(ans_id)):
         con_id.append(chosen_index[str(ans_id[i])])
-    #读取预测结果
     file_name_pre = 'boundary_output_data/' + domain + '/predictions_' + str(run_epoch) + '.json'
     f2 = codecs.open(file_name_pre,"r",encoding="utf-8")
     predictions = json.load(f2)
@@ -49,18 +41,13 @@ def return_predicted_boundary_test_label(domain, run_epoch):
                     chosen_pred[con_id_temp][j] = 1
                 else:
                     chosen_pred[con_id_temp][j] = 2
-        
-    """
-    构造pred列表
-    """
+    
     pred = []
     temp = [0 for j in range(0, 83)]
     count = 0
     for i in range(0, len(origin_index)):
-        #句子中没有提取出方面
         if origin_index[i][0] == '1':
             pred.append(temp)
-        #句子中存在方面
         else:
             pred.append(chosen_pred[count])
             count += 1
@@ -91,8 +78,6 @@ def load_data_test(domain, run_epoch):
     true_label_part = []
     pre_label_part = []
 
-    """
-    """
     origin_index = []
     other_index = 0
     chosen_index = 0
@@ -141,8 +126,6 @@ def load_data_test(domain, run_epoch):
             other_true_label.append(true_label_part)
             other_pre_label.append(pre_label_part)
             
-            """
-            """
             origin_index.append([1, other_index])
             other_index += 1
             
@@ -187,8 +170,6 @@ def load_data_test(domain, run_epoch):
             chosen_true_label.append(true_label_part)
             chosen_pre_label.append(pre_label_part)
             
-            """
-            """
             origin_index.append([0, chosen_index])
             chosen_index += 1
             
@@ -198,16 +179,12 @@ def load_data_test(domain, run_epoch):
             other_true_label.append(true_label_part)
             other_pre_label.append(pre_label_part)
             
-            """
-            """
             origin_index.append([1, other_index])
             other_index += 1
             
 
     save_test(f1,f2,chosen_string, chosen_true_label, chosen_pre_label, other_string, other_true_label, other_pre_label)
-    """
-    写入test数据集本来的索引顺序
-    """
+
     filename_origin_index = 'output_data/' + domain + '/origin_index_' + str(run_epoch) + '.utf8'
     with open(filename_origin_index, 'w', encoding='utf8') as f:
         for i in origin_index:

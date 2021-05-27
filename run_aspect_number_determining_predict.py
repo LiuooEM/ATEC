@@ -59,7 +59,7 @@ flags.DEFINE_string(
     "The config json file corresponding to the pre-trained BERT model. "
     "This specifies the model architecture.")
 
-flags.DEFINE_string("task_name", 'anp', "The name of the task to train.")
+flags.DEFINE_string("task_name", 'and', "The name of the task to train.")
 
 flags.DEFINE_string("vocab_file", 'BERT_BASE_DIR/vocab.txt',
                     "The vocabulary file that the BERT model was trained on.")
@@ -862,7 +862,7 @@ def main(domain, run_epoch):
       "mnli": MnliProcessor,
       "mrpc": MrpcProcessor,
       "xnli": XnliProcessor,
-      "and" : Aspect_Number_DEtermining,
+      "and" : Aspect_Number_Determining,
   }
 
   tokenization.validate_case_matches_checkpoint(FLAGS.do_lower_case,

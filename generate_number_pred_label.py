@@ -38,7 +38,6 @@ def generate_number_test_data(domain, run_epoch):
     aspects_end = []
     aspects_label = []
 
-    #找出预测的方面，生成json文件
     for i in range(len(pre_label)):
         pred_aspects_nums_part = 0
         string_part = string[i]
@@ -57,9 +56,7 @@ def generate_number_test_data(domain, run_epoch):
                         end = len(pre_label_part) - 1
                 aspects_end.append(end - 1)
                 for m in range(j, end):
-                    #记录方面
                     aspects_part.append(string_part[m])
-                #存储句子、方面、label
                 sentence.append(string_part)
                 aspects.append(aspects_part)
                 sentence_idx.append(i)
@@ -67,7 +64,6 @@ def generate_number_test_data(domain, run_epoch):
                 aspects_part = []
                 pred_aspects_nums_part += 1
         pred_aspects_nums.append(pred_aspects_nums_part)
-    #写入json文件
     file_name = 'output_data/' + domain + '/test_' + str(run_epoch) + '_number_test_data.json'
     f = codecs.open(file_name, "w", encoding="utf-8")
 
@@ -102,7 +98,6 @@ def generate_number_test_data(domain, run_epoch):
     return pred_aspects_nums
 
 def json_to_csv(domain, run_epoch):
-    #读取json文件
     json_filename = 'output_data/' + domain + '/test_' + str(run_epoch) + '_number_test_data.json'
     f = codecs.open(json_filename, "r", encoding="utf-8")
     dict = json.load(f)
@@ -134,7 +129,6 @@ def json_to_csv(domain, run_epoch):
         aspects_start.append(aspects_start_part)
         aspects_end.append(aspects_end_part)
 
-        #分析aspect里面的异常数据
         len_aspects.append(len(aspects_part.split()))
 
     csv_test_filename = 'output_data/' + domain + '/test_' + str(run_epoch) + '_number_test_data.csv'
@@ -148,10 +142,6 @@ def json_to_csv(domain, run_epoch):
         csv_file.close()
 
 def return_predicted_number_test_label(domain, run_epoch, pred_y):
-    #思路：先读取csv和预测结果，然后构建一个pred_label列表，初始全为0。
-    #先读取句子信息，如果存在就继续，不存在就跳过
-    #遍历csv中的信息，按照预测结果填充
-    
     sentence = []
     aspects = []
     aspects_label = []
@@ -160,7 +150,6 @@ def return_predicted_number_test_label(domain, run_epoch, pred_y):
     aspects_end = []
     predicted_label = []
     
-    #读取GE-CNN预测文件
     filename = 'output_data/' + domain + '/test_' + str(run_epoch) + '_number_test_data.csv'
     with open(filename, 'r') as f:
         quotechar = None
@@ -175,7 +164,6 @@ def return_predicted_number_test_label(domain, run_epoch, pred_y):
             aspects_start.append(line[4])
             aspects_end.append(line[5])
     
-    #读取BERT预测结果
     filename1 = 'number_output_data/' + domain + '/' + str(run_epoch) + '_test_results.tsv'
     with open(filename1, 'r') as f1:
         quotechar = None
@@ -184,31 +172,25 @@ def return_predicted_number_test_label(domain, run_epoch, pred_y):
         for line in reader1:
             lines1.append(line)
         for line in lines1:
-            #如果预测为0的概率大于0.7才采信，不然就保留方面.......
             if float(line[0]) >= 0.7:
                 predicted_label.append(0)
             else:
                 predicted_label.append(1)
     
-    #保证长度相同
     if len(sentence_idx) != len(predicted_label):
         print(len(sentence_idx))
         print(len(predicted_label))
         assert len(sentence_idx) == len(predicted_label)
     
-    #开始构建pred_label
     for i in range(len(sentence_idx)):
-        #第i个句子
         i_th = int(sentence_idx[i])
         start = aspects_start[i]
         end = aspects_end[i]
-        #方面只有1个单词
         if start == end:
             if predicted_label[i] == 0:
                 pred_y[i_th][int(start)] = 0
             else:
                 pred_y[i_th][int(start)] = 1
-        #方面有多个单词
         else:
             if predicted_label[i] == 0:
                 for j in range(int(start), int(end) + 1):

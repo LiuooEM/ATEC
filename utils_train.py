@@ -4,6 +4,7 @@ import json
 import csv
 import numpy as np
 import torch
+import glob
 
 def save_data(domain, results, epoch, run_epoch):
     add = str(run_epoch) + '_' + str(epoch)+".utf8"
@@ -55,3 +56,10 @@ def generate_idx_word(fn):
     for key,val in word_idx.items():
         idx_word[val]=key
     return idx_word
+
+def remove_temporary_file(domain, runs):
+    path = 'train_data/' + domain + '/'
+    for i in range(runs):
+        delete_target = path + str(i) + '*'
+        for filename in glob.glob(delete_target):
+             os.remove(filename)

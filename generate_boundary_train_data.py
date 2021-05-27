@@ -9,11 +9,7 @@ def load_data(domain, epoch, run_epoch):
     add = str(run_epoch) + '_' + str(epoch) + ".utf8"
     output_file = 'train_data/' + domain + '/' + add
     f = codecs.open(output_file, "r", encoding="utf-8")
-    """
-    string是原始句子
-    true_label是真实标注
-    pre_label是预测标注
-    """
+
     string = []
     true_label = []
     pre_label = []
@@ -21,12 +17,6 @@ def load_data(domain, epoch, run_epoch):
     true_label_part = []
     pre_label_part = []
     for line in f:
-        """
-        一行有三个字符串，第一个是单词，第二个是真正的标注，第三是预测的标注
-        """
-        """
-        遇到空行，重置。最终使用的输出是string = []，true_label = []，pre_label = []
-        """
         if len(line.strip()) != 0:
             line_sp = line.strip().split(" ")
             string_part.append(line_sp[0])
@@ -42,12 +32,7 @@ def load_data(domain, epoch, run_epoch):
             if len(pre_label_part) != 0:
                 pre_label.append(pre_label_part)
                 pre_label_part = []
-    """
-    context是原始句子
-    query是预测的方面
-    answer是真正的方面
-    answer_start_index是真正方面开始的位置，计算的是单个字符的位置
-    """
+
     context = []
     query = []
     answer = []
@@ -64,9 +49,6 @@ def load_data(domain, epoch, run_epoch):
             continue
         else:
             con = 0
-            """
-            判断不同情况，选择符合要求的负样本
-            """
             start = 0
             end = 0
             for j in range(len(pre_label_part)):
@@ -154,9 +136,6 @@ def load_data(domain, epoch, run_epoch):
                                     start_ans = t
                                     end_ans = t
                                     break
-                        """
-                        存储负样本
-                        """
                         answer_part.append(string_part[start_ans:end_ans + 1])
                         answer_start_index_part.append(start_ans)
                     con = 0
@@ -203,12 +182,6 @@ def generate_boundary_train_data(domain, context, query, answer,update_index,epo
     dic = []
     id_ = 0
     for i in range(len(context)):
-        """
-        answer_start是真正方面开始的位置
-        text是真正的方面
-        question是预测的方面
-        id是所有方面的排序
-        """
         context_part = context[i]
         query_part = query[i]
         answer_part = answer[i]
@@ -315,10 +288,6 @@ def generate_merged_boundary_train_data(domain, context,answer,question,answer_s
 def merge_boundary_train_data(domain, run_epoch, epoch):
     path = "train_data/" + domain + '/'
     for q in range(1, epoch + 1):
-        """
-        每次顺序取2个，将这两个融合，然后后移一位，再重复，所以最后一个19是包含前面所有的
-        最终的结果是存在完全正确的，也存在有瑕疵的
-        """
         if q-1 == 0:
             add_merge = "0_0_boundary_train_data.json"
         else:
@@ -355,7 +324,6 @@ def merge_boundary_train_data(domain, run_epoch, epoch):
         
 def merge_boundary_train_data_final(domain, run_epoch, epoch):
     path = "train_data/" + domain +'/'
-    #把5轮生成的数据再整合一下
     for q in range(1, run_epoch):
         add_merge = str(q-1) + '_' + str(epoch[q-1]) + "_boundary_train_data_merged.json"
         pre_file = os.path.join(path, add_merge)
