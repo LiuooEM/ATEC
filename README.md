@@ -16,33 +16,41 @@
 
 5. Train Aspect Number Determining module:
 
-   `python3 run_aspect_number_determining_train.py`
-   `--task_name=and`
-   `--do_train=true`
-   `--data_dir=train_data`
-   `--vocab_file=BERT_BASE_DIR/vocab.txt`
-   `--bert_config_file=BERT_BASE_DIR/bert_config.json`
-   `--init_checkpoint=BERT_BASE_DIR/bert_model.ckpt`
-   `--max_seq_length=85`
-   `--train_batch_size=10`
-   `--num_train_epochs=10`
-   `--learning_rate=3e-5`
-   `--output_dir=number_output_data`
-   `--domain=laptop`
+   ```
+   python3 run_aspect_number_determining_train.py
+   --task_name=and
+   --do_train=true
+   --data_dir=train_data
+   --vocab_file=BERT_BASE_DIR/vocab.txt
+   --bert_config_file=BERT_BASE_DIR/bert_config.json
+   --init_checkpoint=BERT_BASE_DIR/bert_model.ckpt
+   --max_seq_length=85
+   --train_batch_size=10
+   --num_train_epochs=10
+   --learning_rate=3e-5
+   --output_dir=number_output_data
+   --domain=laptop
+   ```
+
+   
 
 6. Train Aspect Boundary Modifying module:
 
-   `python3 run_aspect_boundary_modifying_train.py`
-   `--vocab_file=BERT_BASE_DIR/vocab.txt`
-   `--bert_config_file=BERT_BASE_DIR/bert_config.json`
-   `--init_checkpoint=BERT_BASE_DIR/bert_model.ckpt`
-   `--do_train=True`
-   `--train_batch_size=10`
-   `--learning_rate=3e-5`
-   `--num_train_epochs=10`
-   `--max_seq_length=85`
-   `--output_dir=boundary_output_data`
-   `--domain=laptop`
+   ```
+   python3 run_aspect_boundary_modifying_train.py
+   --vocab_file=BERT_BASE_DIR/vocab.txt
+   --bert_config_file=BERT_BASE_DIR/bert_config.json
+   --init_checkpoint=BERT_BASE_DIR/bert_model.ckpt
+   --do_train=True
+   --train_batch_size=10
+   --learning_rate=3e-5
+   --num_train_epochs=10
+   --max_seq_length=85
+   --output_dir=boundary_output_data
+   --domain=laptop
+   ```
+
+   
 
 7. Run DE-CNN_evaluate.ipynb (set [generate_data], [num_process], [boundary_process] to True).
 
@@ -62,7 +70,7 @@ We give the usage of BiLSTM-CNN.
 
 **Usage**
 
-​	**Note that: you need to repeat step 1~4 for every domain**
+**Note that: you need to repeat step 1~4 for every domain**
 
 1. Use jupyter notebook to run BiLSTM-CNN_train.ipynb.
 2. Run BiLSTM-CNN_evaluate.ipynb (set [generate_data], [num_process], [boundary_process] to False).
