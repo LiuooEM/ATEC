@@ -15,6 +15,17 @@ def save_data(domain, results, run_epoch):
                 to_write.append(line + "\n")
             to_write.append("\n")
         f.writelines(to_write)
+def generate_idx_word(fn):
+    if len(fn) <= 10:
+        word_idx_fn = 'data/prep_data/word_idx.json'
+    else:
+        word_idx_fn = 'data/prep_data_15/word_idx_15.json'
+    with open(word_idx_fn) as f:
+        word_idx=json.load(f)
+    idx_word={}
+    for key,val in word_idx.items():
+        idx_word[val]=key
+    return idx_word
 
 def predict_boundary_test(domain, run_epoch):
     predict_boundary(domain, run_epoch)

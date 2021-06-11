@@ -13,3 +13,5 @@ pip install sklearn
 
 5. keras==2.2.5
 pip install keras==2.2.5
+
+6. Java8
