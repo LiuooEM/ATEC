@@ -15,3 +15,6 @@ pip install sklearn
 pip install keras==2.2.5
 
 6. Java8
+
+7. gast==0.2.2
+//if gast>=0.2.2, it still can work, but there will be many WARNING.
