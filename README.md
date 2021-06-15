@@ -68,6 +68,8 @@ We train our model on i9-10900K and 2080Ti (11G RAM). It costs about 50 minutes 
 
 We do not randomly split the training/validation sets in the training process, the results of DE-CNN is stable (There may have very little differences on different machines). But the gains brought by post-process modules could vary on different machines. The reason is that Aspect Number Determining module and Aspect Boundary Modifying module have slight differences in training process of each training round. We have not spent many time in searching for best hyperparameters, your retraining results may be higher than that reported in our paper.
 
+**Experiment results reported in our paper:**
+
 | Model        | Lap14         | Res14         | Res15         | Res16         |
 | :----------- | ------------- | ------------- | ------------- | ------------- |
 | DE-CNN       | 81.67         | 84.05         | 66.53         | 74.48         |
@@ -75,7 +77,16 @@ We do not randomly split the training/validation sets in the training process, t
 | DE-CNN + ABM | 84.39 (+2.72) | 87.18 (+3.13) | 72.00 (+5.47) | 77.86 (+3.38) |
 | DE-CNN + TP  | 84.89 (+3.22) | 88.41 (+4.36) | 73.47 (+6.94) | 78.73 (+4.25) |
 
+**Reproduce result (we retrain our model in a new PC):**
+
+| Model       | Lap14        | Res14         | Res15         | Res16         |
+| ----------- | ------------ | ------------- | ------------- | ------------- |
+| DE-CNN      | 81.53        | 84.06         | 65.93         | 74.56         |
+| DE-CNN + TP | 83.93 (+2.4) | 88.60 (+4.54) | 73.49 (+7.56) | 79.49 (+4.93) |
+
 Where AND denotes Aspect Number Determining module, ABM denotes Aspect Boundary Modifying module, TP denotes two post-process modules.
+
+
 
 ### Adaptation experiments
 
