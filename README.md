@@ -66,7 +66,7 @@ We train our model on i9-10900K and 2080Ti (11G RAM). It costs about 50 minutes 
 
 ### Results
 
-We do not randomly split the training/validation sets in the training process, the results of DE-CNN is stable (There may have very little differences on different machines). But the gains brought by post-process modules could vary on different machines. The reason is that Aspect Number Determining module and Aspect Boundary Modifying module have slight differences in training process of each training round. We have not spent many time in searching for best hyperparameters, your retraining results may be higher than that reported in our paper.
+We do not randomly split the training/validation sets in the training process, the results of DE-CNN is stable (It may have very little differences on different machines). But the gains brought by post-process modules could vary on different machines. The reason is that Aspect Number Determining module and Aspect Boundary Modifying module have slight differences in training process of each training round. We have not spent many time in searching for best hyperparameters, your retraining results may be higher than that reported in our paper.
 
 **Experiment results reported in our paper:**
 
