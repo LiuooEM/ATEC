@@ -1,6 +1,6 @@
-## Enhancing-Aspect-Term-Extraction-with-Number-Determining-and-Boundary-Modifying
+## Post-processing Modules with Aspect Term Error Correction for Enhancing Aspect Term Extraction
 
-Code for our XXX paper: 'Enhancing Aspect Term Extraction with Number Determining and Boundary Modifying'
+Code for our XXX paper: 'Post-processing Modules with Aspect Term Error Correction for Enhancing Aspect Term Extraction'
 
 ### Requirements
 
