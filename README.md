@@ -1,6 +1,6 @@
-## Post-processing Modules with Aspect Term Error Correction for Enhancing Aspect Term Extraction
+## Post-processing method with aspect term error correction for enhancing aspect term extraction
 
-Code for our XXX paper: 'Post-processing Modules with Aspect Term Error Correction for Enhancing Aspect Term Extraction'
+Code for our XXX paper: 'Post-processing method with aspect term error correction for enhancing aspect term extraction'
 
 ### Requirements
 
