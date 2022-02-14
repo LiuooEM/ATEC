@@ -1,6 +1,6 @@
 ## Post-processing method with aspect term error correction for enhancing aspect term extraction
 
-Code for our XXX paper: 'Post-processing method with aspect term error correction for enhancing aspect term extraction'
+Code for our Applied Intelligence paper: 'Post-processing method with aspect term error correction for enhancing aspect term extraction'
 
 ### Requirements
 
